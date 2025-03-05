@@ -3,7 +3,7 @@ import { toast } from "sonner";
 
 // Types for our API
 export interface WaitlistSignup {
-  email: string;
+  whatsappNumber: string;
   name: string;
   specialty: string;
   referredBy?: string;

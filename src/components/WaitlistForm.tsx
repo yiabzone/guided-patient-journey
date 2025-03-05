@@ -21,7 +21,9 @@ import { submitToWaitlist, WaitlistSignup } from "@/lib/api";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
+  whatsappNumber: z.string()
+    .min(10, { message: "WhatsApp number must be at least 10 digits" })
+    .refine((val) => /^\+?[0-9]+$/.test(val), { message: "Please enter a valid phone number" }),
   specialty: z.string().min(1, { message: "Please select your specialty" }),
 });
 
@@ -32,7 +34,7 @@ export function WaitlistForm({ onSuccess }: { onSuccess: (position: number, refe
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      email: "",
+      whatsappNumber: "",
       specialty: "",
     },
   });
@@ -98,14 +100,15 @@ export function WaitlistForm({ onSuccess }: { onSuccess: (position: number, refe
           
           <FormField
             control={form.control}
-            name="email"
+            name="whatsappNumber"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>WhatsApp Number</FormLabel>
                 <FormControl>
-                  <Input placeholder="doctor@example.com" className="h-12" {...field} />
+                  <Input placeholder="+1234567890" className="h-12" {...field} />
                 </FormControl>
                 <FormMessage />
+                <p className="text-xs text-muted-foreground">Include country code (e.g., +234 for Nigeria)</p>
               </FormItem>
             )}
           />

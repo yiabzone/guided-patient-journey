@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { ReferralSystem } from "@/components/ReferralSystem";
 import { Features } from "@/components/Features";
-import { Testimonials } from "@/components/Testimonials";
+import { OutcomeStats } from "@/components/OutcomeStats";
 import { 
   getReferralCode, 
   getReferrerFromUrl, 
@@ -122,8 +122,8 @@ const Index = () => {
       {/* Features Section */}
       <Features />
       
-      {/* Testimonials Section */}
-      <Testimonials />
+      {/* Outcome Stats Section (replacing Testimonials) */}
+      <OutcomeStats />
       
       {/* Final CTA Section */}
       <section className="py-16 px-4">
