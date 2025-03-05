@@ -53,7 +53,7 @@ export function WaitlistForm({ onSuccess }: { onSuccess: (position: number, refe
       const waitlistData: WaitlistSignup = {
         ...values,
         referralCode,
-        ...(referredBy && { referredBy }),
+        ...(referredBy ? { referredBy } : {}),
       };
       
       // Submit to waitlist API
@@ -105,10 +105,10 @@ export function WaitlistForm({ onSuccess }: { onSuccess: (position: number, refe
               <FormItem>
                 <FormLabel>WhatsApp Number</FormLabel>
                 <FormControl>
-                  <Input placeholder="+1234567890" className="h-12" {...field} />
+                  <Input placeholder="+1 (555) 123-4567" className="h-12" {...field} />
                 </FormControl>
                 <FormMessage />
-                <p className="text-xs text-muted-foreground">Include country code (e.g., +234 for Nigeria)</p>
+                <p className="text-xs text-muted-foreground">Include country code (e.g., +1 for US)</p>
               </FormItem>
             )}
           />
@@ -126,10 +126,12 @@ export function WaitlistForm({ onSuccess }: { onSuccess: (position: number, refe
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
+                    <SelectItem value="general-practitioner">General Practitioner</SelectItem>
                     <SelectItem value="family-medicine">Family Medicine</SelectItem>
                     <SelectItem value="internal-medicine">Internal Medicine</SelectItem>
                     <SelectItem value="pediatrics">Pediatrics</SelectItem>
                     <SelectItem value="cardiology">Cardiology</SelectItem>
+                    <SelectItem value="obgyn">Obstetrician & Gynecologist</SelectItem>
                     <SelectItem value="neurology">Neurology</SelectItem>
                     <SelectItem value="psychiatry">Psychiatry</SelectItem>
                     <SelectItem value="oncology">Oncology</SelectItem>
