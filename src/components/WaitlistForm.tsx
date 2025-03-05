@@ -49,9 +49,12 @@ export function WaitlistForm({ onSuccess }: { onSuccess: (position: number, refe
       // Check if user was referred by someone
       const referredBy = getReferrerFromUrl();
       
-      // Prepare data for API
+      // Prepare data for API - cast the values to make TypeScript happy
+      // This ensures all required fields are present
       const waitlistData: WaitlistSignup = {
-        ...values,
+        name: values.name,
+        whatsappNumber: values.whatsappNumber,
+        specialty: values.specialty,
         referralCode,
         ...(referredBy ? { referredBy } : {}),
       };
